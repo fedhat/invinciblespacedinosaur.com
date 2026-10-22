@@ -1,0 +1,480 @@
+/* invinciblespacedinosaur.com: the game's palette (src/game/config.ts) and its pixel font for
+   headings, a readable system sans for body copy. The game itself is served under /play. */
+
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/press-start-2p.woff2') format('woff2');
+}
+
+:root {
+  --bg: #05010f;
+  --panel: #0b0620;
+  --green: #39ff14;
+  --cyan: #00f0ff;
+  --magenta: #ff2bd6;
+  --yellow: #ffe600;
+  --purple: #9d4dff;
+  --white: #ffffff;
+  --dim: #8a8aa3;
+  --text: #e8e6f5;
+  --pixel: 'Press Start 2P', 'Courier New', monospace;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --gutter: 20px;
+  --max: 1040px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.dino,
+.qr {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+a {
+  color: var(--cyan);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  padding: 8px 12px;
+  background: var(--yellow);
+  color: var(--bg);
+  font-family: var(--pixel);
+  font-size: 11px;
+  z-index: 10;
+}
+
+.skip:focus {
+  top: var(--gutter);
+}
+
+h1,
+h2,
+h3,
+.kicker,
+.button,
+.store-name,
+.store-sub,
+.age,
+footer p:first-child,
+.home {
+  font-family: var(--pixel);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0;
+  color: var(--green);
+  font-size: clamp(26px, 5.4vw, 48px);
+  line-height: 1.2;
+  text-shadow: 0 0 18px rgba(57, 255, 20, 0.45), 4px 4px 0 #0a5a06;
+}
+
+h2 {
+  margin: 0 0 12px;
+  color: var(--yellow);
+  font-size: clamp(16px, 3vw, 22px);
+  text-shadow: 0 0 14px rgba(255, 230, 0, 0.35);
+}
+
+h3 {
+  margin: 0 0 10px;
+  color: var(--cyan);
+  font-size: 12px;
+}
+
+.kicker {
+  margin: 0 0 14px;
+  color: var(--magenta);
+  font-size: 11px;
+  text-shadow: 0 0 12px rgba(255, 43, 214, 0.5);
+}
+
+.mono {
+  font-family: var(--pixel);
+  font-size: 0.75em;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+/* ---- Hero ---------------------------------------------------------------------------- */
+
+.hero {
+  padding: clamp(32px, 7vw, 80px) var(--gutter) clamp(28px, 5vw, 56px);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.25);
+  background: radial-gradient(ellipse at 50% 0%, rgba(157, 77, 255, 0.22), transparent 60%);
+}
+
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.dino {
+  width: clamp(156px, 34vw, 312px);
+  filter: drop-shadow(0 0 24px rgba(57, 255, 20, 0.25));
+}
+
+.dino.small {
+  width: 156px;
+  margin: 0 auto 20px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .dino {
+    animation: hover 3.2s ease-in-out infinite;
+  }
+  @keyframes hover {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+.tagline {
+  max-width: 34em;
+  margin: 18px auto 10px;
+  font-size: 18px;
+}
+
+.age {
+  margin: 0 0 26px;
+  color: var(--dim);
+  font-size: 9px;
+  line-height: 1.9;
+}
+
+.hint {
+  margin: 14px 0 0;
+  color: var(--dim);
+  font-size: 15px;
+}
+
+@media (min-width: 760px) {
+  .hero-inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 48px;
+    justify-items: start;
+    text-align: left;
+  }
+  .tagline {
+    margin-left: 0;
+  }
+}
+
+/* ---- Buttons --------------------------------------------------------------------------- */
+
+.button {
+  display: inline-block;
+  padding: 16px 22px;
+  border: 3px solid var(--green);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--green);
+  font-size: 12px;
+  text-decoration: none;
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(57, 255, 20, 0.35), 6px 6px 0 #0a5a06;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  color: var(--bg);
+  background: var(--green);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(57, 255, 20, 0.35), 3px 3px 0 #0a5a06;
+}
+
+/* ---- Sections -------------------------------------------------------------------------- */
+
+main > section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(36px, 6vw, 64px) var(--gutter);
+}
+
+main > section + section {
+  border-top: 1px solid rgba(138, 138, 163, 0.25);
+}
+
+.lead {
+  margin: 0 0 24px;
+}
+
+.note {
+  max-width: 44em;
+  margin: 24px 0 0;
+  color: var(--dim);
+}
+
+/* Store tiles */
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 560px;
+}
+
+.store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 18px 20px;
+  border: 2px solid var(--purple);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--white);
+  text-decoration: none;
+  box-shadow: 0 0 22px rgba(157, 77, 255, 0.2);
+}
+
+a.store:hover,
+a.store:focus-visible {
+  border-color: var(--cyan);
+  box-shadow: 0 0 26px rgba(0, 240, 255, 0.3);
+}
+
+.qr {
+  width: 160px;
+  height: 160px;
+  padding: 6px;
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.qr-soon {
+  display: grid;
+  place-items: center;
+  background: rgba(138, 138, 163, 0.15);
+  color: var(--dim);
+  font-family: var(--pixel);
+  font-size: 56px;
+}
+
+.store-name {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.store-sub {
+  color: var(--dim);
+  font-size: 9px;
+}
+
+.store.soon {
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.store.soon .store-sub {
+  color: var(--yellow);
+}
+
+/* Cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 20px 20px 18px;
+  border: 2px solid rgba(0, 240, 255, 0.35);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.card p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Facts for grown-ups */
+
+.facts {
+  max-width: 44em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts li {
+  position: relative;
+  margin: 0 0 14px;
+  padding-left: 26px;
+}
+
+.facts li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+.facts strong {
+  color: var(--white);
+}
+
+/* ---- Footer ---------------------------------------------------------------------------- */
+
+footer {
+  margin-top: 24px;
+  padding: 32px var(--gutter) 40px;
+  border-top: 2px solid rgba(0, 240, 255, 0.25);
+  text-align: center;
+}
+
+footer p {
+  margin: 0 0 10px;
+}
+
+footer p:first-child {
+  font-size: 11px;
+}
+
+footer p:first-child a {
+  text-decoration: none;
+}
+
+.fine {
+  color: var(--dim);
+  font-size: 13px;
+}
+
+/* ---- Document pages (privacy, 404) ----------------------------------------------------- */
+
+.doc-header {
+  padding: 18px var(--gutter);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.25);
+}
+
+.home {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.home img {
+  border-radius: 4px;
+}
+
+.prose {
+  max-width: 44em;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 56px) var(--gutter) 24px;
+}
+
+.prose h1 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(26px, 4.5vw, 36px);
+  color: var(--white);
+  text-shadow: none;
+}
+
+.prose h2 {
+  margin: 36px 0 12px;
+  font-size: 13px;
+}
+
+.prose p,
+.prose li,
+.prose dd {
+  font-size: 17px;
+}
+
+.prose ul {
+  padding-left: 22px;
+}
+
+.prose li {
+  margin-bottom: 8px;
+}
+
+.prose dt {
+  margin-top: 14px;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.prose dd {
+  margin: 4px 0 0;
+}
+
+.effective {
+  color: var(--dim);
+  font-size: 15px;
+}
+
+.center {
+  text-align: center;
+}
